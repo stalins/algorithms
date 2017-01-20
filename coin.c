@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <limits.h>
-int dp[5][3] = {-1};
 
 int min(int a, int b) {
 
 	return a<b?a:b;
 }
+
+int dp[7][3] = {-1};
 
 /*
 
@@ -25,12 +26,18 @@ int coin(int amt, int coins[], int index, int n) {
 
 	if (index < 0 || amt < 0) return INT_MAX;
 
+	// if the sub problem results exits, then return.
+	if (dp[amt][n] > 0) {
+
+		return dp[amt][n];
+	}
+
 	int l = coin(amt-coins[index],  coins, index, n+1);
 	int r = coin(amt, coins, index-1, n);
 
-	int res = min(l, r);
+	dp[amt][n] = min(l, r);
 
-	return res;	
+	return dp[amt][n];	
 }
 
 
@@ -39,5 +46,5 @@ int main() {
 	int coins [] = {1,2,3};
 	int amount = 7;
 
-	printf("%d", coin(amount, coins, 2, 0));
+	printf("Best change with less coin is %d\n\n", coin(amount, coins, 2, 0));
 }
