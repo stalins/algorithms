@@ -1,4 +1,3 @@
-package com.stalin;
 
 public class SubString {
 	
@@ -23,8 +22,10 @@ public class SubString {
 				if ((str.charAt(j) == 'a' && str.charAt(k) == 'b') ||
 					(str.charAt(j) == 'b' && str.charAt(k) == 'a')) {
 					
-					dp[j][k] = i+1;
+					dp[j][k] = i+1;						
 					cMin = min(i+1, cMin);
+					if (cMin == 0)
+						cMin = i+1;
 				}											
 				
 			}
@@ -35,7 +36,9 @@ public class SubString {
 	public static void main(String args[]) {
 		
 		String c = "";
-		String str = "ahobpa";
+//		String str = "Hi bow are You";
+		String str = "ahhhxb";
+
 		int val = sstring(str);
 		System.out.println(val);
 
